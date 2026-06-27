@@ -78,19 +78,19 @@ const AnimatedChart: React.FC<AnimatedChartProps> = ({
         <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#00d4ff" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#00d4ff" stopOpacity={0} />
+              <stop offset="5%" stopColor="var(--accent-purple)" stopOpacity={0.25} />
+              <stop offset="95%" stopColor="var(--accent-purple)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis
             dataKey="index"
             tick={false}
-            axisLine={{ stroke: 'rgba(255,255,255,0.06)' }}
+            axisLine={{ stroke: 'var(--border-color)', strokeWidth: 2 }}
             tickLine={false}
           />
           <YAxis
             domain={[minVal, maxVal]}
-            tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'JetBrains Mono' }}
+            tick={{ fill: 'var(--text-secondary)', fontSize: 10, fontFamily: 'var(--font-mono)', fontWeight: 600 }}
             axisLine={false}
             tickLine={false}
             width={65}
@@ -101,14 +101,15 @@ const AnimatedChart: React.FC<AnimatedChartProps> = ({
           {/* Stop Loss reference */}
           <ReferenceLine
             y={stopLoss}
-            stroke="#ff3366"
-            strokeDasharray="6 4"
-            strokeWidth={1}
+            stroke="var(--accent-red)"
+            strokeDasharray="5 3"
+            strokeWidth={2}
             label={{
               value: 'SL',
-              fill: '#ff3366',
+              fill: 'var(--accent-red)',
               fontSize: 10,
-              fontFamily: 'JetBrains Mono',
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 700,
               position: 'right',
             }}
           />
@@ -116,14 +117,15 @@ const AnimatedChart: React.FC<AnimatedChartProps> = ({
           {/* Entry reference */}
           <ReferenceLine
             y={entryPrice}
-            stroke="#00d4ff"
-            strokeDasharray="4 4"
-            strokeWidth={1}
+            stroke="var(--accent-cyan)"
+            strokeDasharray="4 3"
+            strokeWidth={2}
             label={{
               value: 'Entry',
-              fill: '#00d4ff',
+              fill: 'var(--accent-cyan)',
               fontSize: 10,
-              fontFamily: 'JetBrains Mono',
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 700,
               position: 'right',
             }}
           />
@@ -131,14 +133,15 @@ const AnimatedChart: React.FC<AnimatedChartProps> = ({
           {/* Target reference */}
           <ReferenceLine
             y={targetPrice}
-            stroke="#00ff88"
-            strokeDasharray="6 4"
-            strokeWidth={1}
+            stroke="var(--accent-green)"
+            strokeDasharray="5 3"
+            strokeWidth={2}
             label={{
               value: 'TP',
-              fill: '#00ff88',
+              fill: 'var(--accent-green)',
               fontSize: 10,
-              fontFamily: 'JetBrains Mono',
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 700,
               position: 'right',
             }}
           />
@@ -146,17 +149,17 @@ const AnimatedChart: React.FC<AnimatedChartProps> = ({
           <Area
             type="monotone"
             dataKey="price"
-            stroke="#00d4ff"
-            strokeWidth={2}
+            stroke="var(--accent-purple)"
+            strokeWidth={3}
             fill="url(#priceGradient)"
             animationDuration={1500}
             animationEasing="ease-out"
             dot={false}
             activeDot={{
-              r: 5,
-              fill: '#00d4ff',
-              stroke: '#0a0e17',
-              strokeWidth: 2,
+              r: 6,
+              fill: 'var(--accent-purple)',
+              stroke: 'var(--border-color)',
+              strokeWidth: 2.5,
             }}
           />
         </AreaChart>
