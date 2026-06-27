@@ -65,9 +65,38 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(213, 0, 249, 0.06) 0%, transparent 60%),
-    radial-gradient(circle at 90% 80%, rgba(0, 255, 170, 0.06) 0%, transparent 60%);
+    radial-gradient(circle at 10% 20%, rgba(213, 0, 249, 0.04) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(0, 255, 170, 0.04) 0%, transparent 60%);
   background-attachment: fixed;
+  position: relative;
+}
+
+/* ========== ANIMATED PERSPECTIVE GRID BACKDROP ========== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(rgba(213, 0, 249, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(213, 0, 249, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  perspective: 1000px;
+  transform: rotateX(60deg) translateY(-30%) scale(1.6);
+  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7) 80%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7) 80%);
+  z-index: -2;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: grid-move 22s linear infinite;
+}
+
+@keyframes grid-move {
+  from { background-position: 0 0; }
+  to { background-position: 0 1000px; }
 }
 
 #root {
@@ -228,7 +257,13 @@ ul, ol {
   20%, 40%, 60%, 80% { transform: translateX(4px); }
 }
 
-/* ========== GLASSMORPHISM ========== */
+@keyframes border-wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========== GLASSMORPHISM & DYNAMIC AURAS ========== */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(24px);
@@ -246,27 +281,31 @@ ul, ol {
   box-shadow: var(--glass-shadow);
   transition: all var(--transition-normal);
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Need visible for blurring aura borders */
 }
 
-.glass-card::before {
+/* Animated Border Glow Aura */
+.glass-card::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(213, 0, 249, 0.05),
-    transparent
-  );
-  transition: 0.5s;
+  top: -1.5px;
+  left: -1.5px;
+  right: -1.5px;
+  bottom: -1.5px;
+  background: linear-gradient(45deg, var(--accent-cyan), var(--accent-green), var(--accent-red), var(--accent-cyan));
+  background-size: 300%;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+  border-radius: calc(var(--radius-lg) + 1px);
+  animation: border-wave 6s linear infinite;
+  pointer-events: none;
 }
 
-.glass-card:hover::before {
-  left: 100%;
+.glass-card:hover::after {
+  opacity: 0.35;
+  filter: blur(12px);
 }
 
 .glass-card:hover {
@@ -274,8 +313,7 @@ ul, ol {
   border-color: var(--border-glow);
   transform: translateY(-6px) scale(1.015);
   box-shadow: 
-    0 20px 48px rgba(0, 0, 0, 0.7), 
-    0 0 25px rgba(213, 0, 249, 0.18);
+    0 24px 50px rgba(0, 0, 0, 0.75);
 }
 
 /* ========== PAGE LAYOUT ========== */
