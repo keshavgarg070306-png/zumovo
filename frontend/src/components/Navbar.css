@@ -5,7 +5,7 @@
   right: 0;
   z-index: 1000;
   height: 64px;
-  background: rgba(10, 14, 23, 0.85);
+  background: var(--bg-card);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border-color);
@@ -61,7 +61,7 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #fff, var(--accent-cyan));
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -200,7 +200,7 @@
   top: 64px;
   left: 0;
   right: 0;
-  background: rgba(10, 14, 23, 0.95);
+  background: var(--bg-card-hover);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border-color);
   padding: 16px;
