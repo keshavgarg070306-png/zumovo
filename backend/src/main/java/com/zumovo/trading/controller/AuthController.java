@@ -41,7 +41,7 @@ public class AuthController {
      */
     @PostMapping("/register")
     @Operation(summary = "Register a new user")
-    public ResponseEntity<String> register(@Valid @RequestBody AuthRequest request) {
+    public ResponseEntity<?> register(@Valid @RequestBody AuthRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("Username already exists");
@@ -55,8 +55,16 @@ public class AuthController {
         userRepository.save(user);
         log.info("User registered: {}", request.getUsername());
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body("User registered successfully");
+        // Generate token for auto-login
+        String token = jwtTokenProvider.generateToken(user.getUsername());
+
+        AuthResponse response = AuthResponse.builder()
+                .token(token)
+                .username(user.getUsername())
+                .expiresIn(jwtTokenProvider.getExpirationMs())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     /**
