@@ -1,0 +1,94 @@
+.countdown-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+}
+
+.countdown-timer--large {
+  gap: 6px;
+}
+
+.countdown-digit-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.countdown-digit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 26px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.countdown-timer--large .countdown-digit {
+  min-width: 36px;
+  height: 44px;
+  font-size: 20px;
+  border-radius: 8px;
+}
+
+.countdown-separator {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  animation: pulse-glow 1s ease-in-out infinite;
+}
+
+.countdown-timer--large .countdown-separator {
+  font-size: 20px;
+}
+
+.countdown-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.countdown-timer--large .countdown-label {
+  font-size: 10px;
+}
+
+/* Color states */
+.countdown-timer--safe .countdown-digit {
+  color: var(--accent-green);
+  border-color: rgba(0, 255, 136, 0.15);
+  background: rgba(0, 255, 136, 0.04);
+}
+
+.countdown-timer--warning .countdown-digit {
+  color: var(--accent-gold);
+  border-color: rgba(255, 215, 0, 0.2);
+  background: rgba(255, 215, 0, 0.04);
+}
+
+.countdown-timer--danger .countdown-digit {
+  color: var(--accent-red);
+  border-color: rgba(255, 51, 102, 0.2);
+  background: rgba(255, 51, 102, 0.06);
+  animation: pulse-glow 1s ease-in-out infinite;
+}
+
+.countdown-timer--expired .countdown-digit {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* Label variant under digits */
+.countdown-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

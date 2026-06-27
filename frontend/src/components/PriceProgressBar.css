@@ -1,0 +1,135 @@
+.price-progress {
+  position: relative;
+  padding: 32px 16px 16px;
+}
+
+.price-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.price-progress-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.price-progress-label-text {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.price-progress-label-value {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.price-progress-label--sl .price-progress-label-value {
+  color: var(--accent-red);
+}
+
+.price-progress-label--entry .price-progress-label-value {
+  color: var(--accent-cyan);
+}
+
+.price-progress-label--current .price-progress-label-value {
+  color: var(--accent-gold);
+}
+
+.price-progress-label--target .price-progress-label-value {
+  color: var(--accent-green);
+}
+
+.price-progress-track {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  overflow: visible;
+  margin-top: 8px;
+}
+
+.price-progress-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-green));
+  opacity: 0.15;
+}
+
+.price-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-green));
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.price-progress-marker {
+  position: absolute;
+  top: -6px;
+  width: 2px;
+  height: 20px;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: left 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.price-progress-marker--entry {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+.price-progress-dot {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 1s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+}
+
+.price-progress-dot-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  border: 2px solid var(--bg-primary);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+.price-progress-tooltip {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid var(--border-glow);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-gold);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+}

@@ -1,0 +1,46 @@
+.price-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.price-ticker--up {
+  color: var(--accent-green);
+}
+
+.price-ticker--down {
+  color: var(--accent-red);
+}
+
+.price-ticker--neutral {
+  color: var(--text-primary);
+}
+
+.price-ticker-arrow {
+  font-size: 10px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.price-ticker.flash-green {
+  animation: flash-green 0.4s ease;
+}
+
+.price-ticker.flash-red {
+  animation: flash-red 0.4s ease;
+}
+
+@keyframes flash-green {
+  0% { background: rgba(0, 255, 136, 0.3); border-radius: 4px; }
+  100% { background: transparent; }
+}
+
+@keyframes flash-red {
+  0% { background: rgba(255, 51, 102, 0.3); border-radius: 4px; }
+  100% { background: transparent; }
+}

@@ -1,0 +1,51 @@
+.roi-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.roi-gauge-svg {
+  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.15));
+}
+
+.roi-gauge-value {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 800;
+  text-align: center;
+  margin-top: -16px;
+}
+
+.roi-gauge-value--positive {
+  color: var(--accent-green);
+}
+
+.roi-gauge-value--negative {
+  color: var(--accent-red);
+}
+
+.roi-gauge-value--neutral {
+  color: var(--accent-gold);
+}
+
+.roi-gauge-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: -4px;
+}
+
+.roi-gauge-glow {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 60px;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.2;
+  pointer-events: none;
+}

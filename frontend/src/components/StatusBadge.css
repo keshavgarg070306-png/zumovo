@@ -1,0 +1,128 @@
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-badge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  opacity: 0.15;
+}
+
+/* OPEN - green pulsing glow */
+.status-badge--open {
+  color: var(--accent-green);
+  background: rgba(0, 255, 136, 0.08);
+  border-color: rgba(0, 255, 136, 0.25);
+  animation: badge-pulse-green 2s ease-in-out infinite;
+}
+
+.status-badge--open .status-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 6px var(--accent-green);
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes badge-pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(0, 255, 136, 0.1), 0 0 12px rgba(0, 255, 136, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.2), 0 0 24px rgba(0, 255, 136, 0.1);
+  }
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* TARGET_HIT - gold sparkle */
+.status-badge--target-hit {
+  color: var(--accent-gold);
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.3);
+  animation: badge-sparkle 2s ease-in-out infinite;
+}
+
+.status-badge--target-hit .status-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  box-shadow: 0 0 6px var(--accent-gold);
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+@keyframes badge-sparkle {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.1), 0 0 12px rgba(255, 215, 0, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25), 0 0 32px rgba(255, 215, 0, 0.12);
+  }
+}
+
+/* STOPLOSS_HIT - red static glow */
+.status-badge--stoploss-hit {
+  color: var(--accent-red);
+  background: rgba(255, 51, 102, 0.08);
+  border-color: rgba(255, 51, 102, 0.25);
+  box-shadow: 0 0 8px rgba(255, 51, 102, 0.15);
+}
+
+.status-badge--stoploss-hit .status-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-red);
+  box-shadow: 0 0 6px var(--accent-red);
+}
+
+/* EXPIRED - grey faded */
+.status-badge--expired {
+  color: var(--text-muted);
+  background: rgba(100, 116, 139, 0.08);
+  border-color: rgba(100, 116, 139, 0.15);
+  opacity: 0.7;
+}
+
+.status-badge--expired .status-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* Large variant */
+.status-badge--lg {
+  padding: 8px 20px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.status-badge--lg .status-badge-dot {
+  width: 8px;
+  height: 8px;
+}
