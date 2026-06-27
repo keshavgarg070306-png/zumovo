@@ -1,44 +1,46 @@
 /* ============================================
-   ZUMOVO — PREMIUM LIGHT GLASS THEME
-   Electric Indigo, Clean Mint & Bright Rose
+   ZUMOVO — NEO-BRUTALISM TRADING THEME
+   Figma & Gumroad Inspired Modern UI Style
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
 :root {
-  --bg-primary: #f5f6f9;
+  --bg-primary: #f4f0ea;      /* Warm brutalist sand background */
   --bg-secondary: #ffffff;
-  --bg-tertiary: #eef0f5;
-  --bg-card: rgba(255, 255, 255, 0.75);
-  --bg-card-hover: rgba(255, 255, 255, 0.92);
+  --bg-tertiary: #e8e2d5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ffffff;
   --bg-card-solid: #ffffff;
-  --border-color: rgba(124, 77, 255, 0.08);
-  --border-glow: rgba(124, 77, 255, 0.35);
+  --border-color: #0c0d12;    /* Thick dark outline */
+  --border-glow: #0c0d12;
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #8492a6;
+  --text-primary: #0c0d12;
+  --text-secondary: #3b4252;
+  --text-muted: #707584;
 
-  --accent-cyan: #7c4dff;     /* Electric Indigo */
-  --accent-green: #00b894;    /* Clean Mint */
-  --accent-red: #d63031;      /* Bright Rose Red */
-  --accent-gold: #e1b12c;     /* Golden Amber */
-  --accent-purple: #8c7ae6;   /* Soft Indigo */
-  --accent-orange: #e67e22;   /* Soft Orange */
+  --accent-cyan: #7000ff;     /* Neo-brutalist Violet */
+  --accent-green: #39ff14;    /* Neon Lime */
+  --accent-red: #ff3355;      /* Bold Neon Red */
+  --accent-gold: #ffcc00;     /* Sun Yellow */
+  --accent-purple: #ff007f;   /* Hot Pink */
+  --accent-orange: #ff6b00;   /* Bright Orange */
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(124, 77, 255, 0.1);
-  --glass-shadow: 0 12px 40px rgba(124, 77, 255, 0.08);
+  --glass-bg: #ffffff;
+  --glass-border: #0c0d12;
+  --glass-shadow: 6px 6px 0px #0c0d12;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 28px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
 
-  --transition-fast: 150ms cubic-bezier(0.25, 0.8, 0.25, 1);
-  --transition-normal: 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
-  --transition-slow: 500ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: 100ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ========== RESET ========== */
@@ -64,14 +66,11 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(124, 77, 255, 0.05) 0%, transparent 60%),
-    radial-gradient(circle at 90% 80%, rgba(0, 184, 148, 0.05) 0%, transparent 60%);
   background-attachment: fixed;
   position: relative;
 }
 
-/* ========== ANIMATED PERSPECTIVE GRID BACKDROP ========== */
+/* ========== NEO-BRUTALIST DECORATIVE ELEMENTS ========== */
 body::before {
   content: '';
   position: fixed;
@@ -80,23 +79,13 @@ body::before {
   width: 100vw;
   height: 100vh;
   background-image: 
-    linear-gradient(rgba(124, 77, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 77, 255, 0.06) 1px, transparent 1px);
-  background-size: 50px 50px;
-  background-position: center;
-  perspective: 1000px;
-  transform: rotateX(60deg) translateY(-30%) scale(1.6);
-  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4) 80%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4) 80%);
+    radial-gradient(#0c0d12 1.5px, transparent 1.5px),
+    radial-gradient(#0c0d12 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
   z-index: -2;
-  opacity: 0.8;
+  opacity: 0.08;
   pointer-events: none;
-  animation: grid-move 22s linear infinite;
-}
-
-@keyframes grid-move {
-  from { background-position: 0 0; }
-  to { background-position: 0 1000px; }
 }
 
 #root {
@@ -107,7 +96,8 @@ body::before {
 
 a {
   color: var(--accent-cyan);
-  text-decoration: none;
+  text-decoration: underline;
+  font-weight: 600;
   transition: color var(--transition-fast);
 }
 
@@ -141,40 +131,40 @@ ul, ol {
 
 /* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
+  border-left: 2px solid var(--border-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 77, 255, 0.15);
-  border-radius: 4px;
-  border: 2px solid var(--bg-primary);
+  background: var(--accent-cyan);
+  border: 2px solid var(--border-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 77, 255, 0.35);
+  background: var(--accent-purple);
 }
 
 /* ========== FOCUS ========== */
 *:focus-visible {
-  outline: 2px solid var(--accent-cyan);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: 3px solid var(--accent-purple);
+  outline-offset: 1px;
 }
 
 /* ========== SELECTION ========== */
 ::selection {
-  background: rgba(124, 77, 255, 0.15);
+  background: var(--accent-gold);
   color: var(--text-primary);
 }
 
 /* ========== UTILITY CLASSES ========== */
 .mono {
   font-family: var(--font-mono);
+  font-weight: 600;
 }
 
 .text-cyan { color: var(--accent-cyan); }
@@ -185,24 +175,19 @@ ul, ol {
 
 /* ========== ANIMATIONS ========== */
 @keyframes pulse-glow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.03); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 5px currentColor; }
-  50% { box-shadow: 0 0 12px currentColor; }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0%, 100% { filter: drop-shadow(0 0 2px currentColor); }
+  50% { filter: drop-shadow(0 0 8px currentColor); }
 }
 
 @keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -213,7 +198,7 @@ ul, ol {
 @keyframes slideInDown {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
@@ -231,89 +216,41 @@ ul, ol {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(0.5deg); }
-}
-
-@keyframes borderGlow {
-  0%, 100% { border-color: rgba(124, 77, 255, 0.15); }
-  50% { border-color: rgba(124, 77, 255, 0.4); }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-  20%, 40%, 60%, 80% { transform: translateX(4px); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
 }
 
-@keyframes border-wave {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ========== GLASSMORPHISM & DYNAMIC AURAS ========== */
+/* ========== NEO-BRUTALIST COMPONENTS ========== */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
+  border: 3px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
 }
 
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-md);
   box-shadow: var(--glass-shadow);
-  transition: all var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
   position: relative;
-  overflow: visible;
-}
-
-/* Animated Border Glow Aura */
-.glass-card::after {
-  content: '';
-  position: absolute;
-  top: -1.5px;
-  left: -1.5px;
-  right: -1.5px;
-  bottom: -1.5px;
-  background: linear-gradient(45deg, var(--accent-cyan), var(--accent-green), var(--accent-red), var(--accent-cyan));
-  background-size: 300%;
-  z-index: -1;
-  filter: blur(8px);
-  opacity: 0;
-  transition: opacity 0.35s ease, filter 0.35s ease;
-  border-radius: calc(var(--radius-lg) + 1px);
-  animation: border-wave 6s linear infinite;
-  pointer-events: none;
-}
-
-.glass-card:hover::after {
-  opacity: 0.25;
-  filter: blur(10px);
+  overflow: hidden;
 }
 
 .glass-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-glow);
-  transform: translateY(-6px) scale(1.012);
-  box-shadow: 
-    0 20px 40px rgba(124, 77, 255, 0.12);
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px var(--border-color);
+}
+
+/* Remove auras/shadow overlaps not needed in Brutalism */
+.glass-card::after {
+  display: none !important;
 }
 
 /* ========== PAGE LAYOUT ========== */

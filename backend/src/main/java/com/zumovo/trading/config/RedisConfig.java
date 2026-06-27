@@ -28,19 +28,27 @@ public class RedisConfig {
      */
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        RedisCacheConfiguration defaultConfig = RedisCacheConfiguration.defaultCacheConfig()
-                .serializeKeysWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                .serializeValuesWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
-                .disableCachingNullValues();
+        try {
+            // Test connection to verify if Redis is running
+            connectionFactory.getConnection().close();
 
-        RedisCacheConfiguration pricesCacheConfig = defaultConfig
-                .entryTtl(Duration.ofSeconds(5));
+            RedisCacheConfiguration defaultConfig = RedisCacheConfiguration.defaultCacheConfig()
+                    .serializeKeysWith(
+                            RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                    .serializeValuesWith(
+                            RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
+                    .disableCachingNullValues();
 
-        return RedisCacheManager.builder(connectionFactory)
-                .cacheDefaults(defaultConfig)
-                .withInitialCacheConfigurations(Map.of("prices", pricesCacheConfig))
-                .build();
+            RedisCacheConfiguration pricesCacheConfig = defaultConfig
+                    .entryTtl(Duration.ofSeconds(5));
+
+            return RedisCacheManager.builder(connectionFactory)
+                    .cacheDefaults(defaultConfig)
+                    .withInitialCacheConfigurations(Map.of("prices", pricesCacheConfig))
+                    .build();
+        } catch (Exception e) {
+            System.out.println("WARNING: Redis connection failed. Falling back to in-memory ConcurrentMapCacheManager. Info: " + e.getMessage());
+            return new org.springframework.cache.concurrent.ConcurrentMapCacheManager("prices");
+        }
     }
 }
